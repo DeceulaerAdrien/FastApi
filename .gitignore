@@ -1,6 +1,5 @@
 #root
 .env
-toDoList.loo
 
 #python
 .venv/
