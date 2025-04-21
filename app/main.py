@@ -1,10 +1,8 @@
 from typing import Union,Optional
 from fastapi import FastAPI, Depends
-import crud, database
 from sqlalchemy.orm import Session
-from schemas import TaskSchema
-from models import Taskmodel
-
+import app.crud as crud, app.database as database
+from app.schemas import TaskSchema
 
 app = FastAPI()
 
@@ -18,10 +16,6 @@ def get_db():
 @app.get("/")
 def read_root():
     return {"Hello":"World"}
-
-@app.get("/test")
-def read_item():
-    return {"Le test est concluant"}
 
 @app.post('/todos/create',response_model=TaskSchema.TodoCreate)
 def create_task(todo: TaskSchema.TodoCreate,db: Session=Depends(get_db)):

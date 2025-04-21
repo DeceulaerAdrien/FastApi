@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from models import Taskmodel as Taskmodel
-from schemas import TaskSchema as schemas
+from app.models import Taskmodel
+from app.schemas import TaskSchema
 
-def createTask(db:Session,todo: schemas.TodoCreate):
+def createTask(db:Session,todo: TaskSchema.TodoCreate):
     db_todo = Taskmodel.Task(
         name=todo.name,
         description=todo.description,

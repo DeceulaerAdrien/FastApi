@@ -5,9 +5,19 @@ from sqlalchemy import pool
 
 from alembic import context
 
-#personal import
-from sqlalchemy.ext.declarative import declarative_base
 
+#personnal url for database
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+ALEMBIC_HOST = os.getenv("ALEMBIC_HOST")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+database_url = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{ALEMBIC_HOST}/{POSTGRES_DB}"
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,6 +32,8 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+from app.database import Base
+from app.models.Taskmodel import Task
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -42,7 +54,8 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    # url = config.get_main_option("sqlalchemy.url")
+    url= database_url
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -65,6 +78,7 @@ def run_migrations_online() -> None:
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        url=database_url,
     )
 
     with connectable.connect() as connection:

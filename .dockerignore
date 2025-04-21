@@ -1,0 +1,12 @@
+alembic/
+alembic.ini
+app/__pycache__/
+docker-compose.yml
+config/
+.env-sample
+readme.md
+toDoList.loo
+config/
+.venv/
+.git/
+.gitignore
