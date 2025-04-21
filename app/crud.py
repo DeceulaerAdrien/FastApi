@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from . import models
+import models
 from schemas import TaskSchema as schemas
 
 def createTask(db:Session,todo: schemas.TodoCreate):

@@ -1,6 +1,6 @@
 from typing import Union,Optional
 from fastapi import FastAPI, Depends
-from . import crud,models,database
+import crud, models, database
 from sqlalchemy.orm import Session
 from schemas import TaskSchema
 

@@ -7,11 +7,12 @@ services:
       context: .
       dockerfile: config/docker/Dockerfile_FastApi
     volumes:
-      - .:/usr/src/app
+      - ./app:/usr/src/app
+      - .env:/usr/src/.env
     ports:
       - 8000:8000
 
-    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
   postgres:
     container_name: postgres
@@ -21,7 +22,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=adrien
+      - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=todolist
 volumes:
