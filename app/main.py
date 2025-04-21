@@ -1,8 +1,9 @@
 from typing import Union,Optional
 from fastapi import FastAPI, Depends
-import crud, models, database
+import crud, database
 from sqlalchemy.orm import Session
 from schemas import TaskSchema
+from models import Taskmodel
 
 
 app = FastAPI()
@@ -14,14 +15,9 @@ def get_db():
     finally:
         db.close()
 
-
 @app.get("/")
 def read_root():
     return {"Hello":"World"}
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
 
 @app.get("/test")
 def read_item():
