@@ -5,7 +5,7 @@ alembic.ini
 #root
 .env-sample
 readme.md
-toDoList.loo
+*.loo
 
 #docker
 config/
