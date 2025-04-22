@@ -16,3 +16,6 @@ def createTask(db:Session,task: TaskSchema.CreateTask):
 
 def getTask(db:Session):
     return db.query(TaskModel).all()
+
+def getTaskById(db:Session,task_id:int):
+    return db.query(TaskModel).filter(TaskModel.id == task_id).first()

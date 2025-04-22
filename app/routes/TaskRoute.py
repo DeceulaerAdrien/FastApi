@@ -14,6 +14,13 @@ def read_tasks(db: Session = Depends(database.get_db)):
         raise HTTPException(status_code=404, detail="No tasks found")
     return {"tasks":[schemas.ReadTask.model_validate(task) for task in tasks]}
 
+@router.get('/read/{task_id}', response_model=schemas.ReadTask)
+def read_task(task_id: int, db: Session = Depends(database.get_db)):
+    task = cruds.getTaskById(db, task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return schemas.ReadTask.model_validate(task)
+
 @router.post('/create', response_model=schemas.ReadTask)
 def create_task(task: schemas.CreateTask, db: Session = Depends(database.get_db)):
     db_task = cruds.createTask(db, task)
