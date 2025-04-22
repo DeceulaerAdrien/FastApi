@@ -11,17 +11,17 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants :
 
 ## Instructions de démarrage
 
-1. **Installer les dépendances**
+1. **Installer les dépendances**  
    Créez un environnement virtuel et installez les dépendances avec la commande suivante :
 
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Configurer l'environnement**
+2. **Configurer l'environnement**  
    Renommez le fichier `.env-sample` en `.env` et remplissez les variables nécessaires.
 
-3. **Lancer l'application**
+3. **Lancer l'application**  
    Utilisez `uvicorn` pour démarrer le serveur :
 
    ```bash
@@ -32,14 +32,17 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants :
 
 Pour ceux qui préfèrent Docker, tout est déjà configuré dans le fichier `docker-compose.yml`. Voici les étapes :
 
-1. **Construire et démarrer les conteneurs**
+1. **Mettre en place le variable d'environement**
+   Renommer le fichier `.env-sample` en `.env` et ecrire vos variables d'environements
+
+2. **Construire et démarrer les conteneurs**
    Exécutez la commande suivante :
 
    ```bash
    docker-compose up --build
    ```
 
-2. **Accéder à l'API**
+3. **Accéder à l'API**
    Une fois les conteneurs démarrés, l'API sera accessible à l'adresse suivante :
    [http://localhost:8000](http://localhost:8000)
 

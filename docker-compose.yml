@@ -24,5 +24,14 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=todolist
+
+  adminer:
+    depends_on:
+      - postgres
+    container_name: adminer
+    image: adminer:latest
+    ports:
+      - 8080:8080
+
 volumes:
   postgres_data:
