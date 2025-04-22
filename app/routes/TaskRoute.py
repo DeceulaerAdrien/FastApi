@@ -23,5 +23,8 @@ def read_task(task_id: int, db: Session = Depends(database.get_db)):
 
 @router.post('/create', response_model=schemas.ReadTask)
 def create_task(task: schemas.CreateTask, db: Session = Depends(database.get_db)):
-    db_task = cruds.createTask(db, task)
-    return db_task
+    try:
+        db_task = cruds.createTask(db, task)
+        return db_task
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create task: {str(e)}")
