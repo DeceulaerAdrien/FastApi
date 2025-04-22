@@ -23,7 +23,7 @@ class Task(Base):
 
     completed=Column(
         Boolean,
-        default=False
+        default=False,
         nullable=False
         )
 
